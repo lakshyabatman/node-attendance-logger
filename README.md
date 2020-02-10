@@ -1,7 +1,7 @@
 # Attendance management system
 
 A simple Node.JS application for managing school or college attendance.
-This application is deployed on 
+This application is deployed on https://attendance-sys-logger.herokuapp.com/
 This application is a part of task 
 The task #2 is on this link.
 
