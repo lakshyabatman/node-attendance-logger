@@ -11,28 +11,43 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
-    <div class="container px-5" >
-        <form id="signup">
-            <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="name">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="password" name="password">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Example select</label>
-                <select class="form-control" id="category" name="category">
-                <option value="1">Teacher</option>
-                <option value="0">Student</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+    <div class="jumbotron jumbotron-fluid bg-dark text-white">
+      <div class="container">
+        <h1 class="display-4">Attendance Manager</h1>
+      </div>
     </div>
+    <div class="container px-5" style="min-height: 60vh;" >
+      <div class="row d-flex justify-content-center">
+        <form id="signup" class="col-6">
+          <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="name">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="password" name="password">
+          </div>
+          <div class="form-group">
+              <label for="exampleFormControlSelect1">Example select</label>
+              <select class="form-control" id="category" name="category">
+              <option value="1">Teacher</option>
+              <option value="0">Student</option>
+              </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Signup</button>
+          <span>Already a Member?  <a href="login.html">Login here</a></span>
+      </form>
+      </div>
+        
+    </div>
+    <footer class="bg-primary text-light py-5" style="min-height: 10vh;bottom: 0;width: 100%;">
+      <div class="row d-flex justify-content-center">
+        Made with ❤️ by <a href="https://www.github.com/lakshyabatman" style="color: white;margin-left: 3px;"> Lakshya Khera</a>
+      </div>
+    </footer>
+
+    
     <script>
       document.getElementById("signup").addEventListener("submit", e => {
         let name = document.getElementById("email").value

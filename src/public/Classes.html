@@ -11,22 +11,29 @@
     <title>Classes</title>
   </head>
   <body>
-    <h1 id="head"></h1>  
+    <div class="jumbotron jumbotron-fluid bg-dark text-white">
+        <div class="container">
+            <h1 id="head" class="display-4"></h1>  
+        </div>
+    </div>
     <br>
-    <button type="button" class="btn btn-primary" id="add"><a style="color: white;">Add Class</a></button>  
-    <table class="table">
-        <thead id="tableHeading">
-          <tr>
-            <th>Class Date</th>
-            <th>Starting Time</th>
-            <th>End Time</th>
-            <th># of students</th>
-          </tr>
-        </thead>
-        <tbody id="classes">
+    <div class="container">
+        <button type="button" class="btn btn-primary mb-5" id="add"><a style="color: white;">Add Class</a></button>  
+            <table class="table">
+                <thead id="tableHeading">
+                  <tr>
+                    <th>Class Date</th>
+                    <th>Starting Time</th>
+                    <th>End Time</th>
+                    <th># of students</th>
+                  </tr>
+                </thead>
+                <tbody id="classes">
+        
+                </tbody>
+            </table>
+    </div>
 
-        </tbody>
-    </table>
 
   </body>
   <script>
@@ -49,6 +56,7 @@
                 document.getElementById("add").style.display="none"
                 route="/viewAttendance"
         }
+
         document.getElementById("tableHeading").innerHTML=TableHeading
         document.getElementById('head').innerHTML = subjectName
         fetch(route,{

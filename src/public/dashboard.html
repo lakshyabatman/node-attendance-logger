@@ -1,22 +1,33 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
     <title>Dashboard</title>
+    <style>
+        .list-group-item:hover {
+            background-color: blueviolet;
+        }
+        .list-group-item:hover > a {
+            color:white;
+            text-decoration: none;
+        }
+    </style>
   </head>
   <body>
-    <h1>Dashboard</h1>
-    <br>
-    <ul class="list-group" id="subjects">
-        <li class="list-group-item">Cras justo odio</li>
-        
-      </ul>
+    <div class="jumbotron jumbotron-fluid bg-dark text-white">
+        <div class="container">
+          <h1 class="display-4">Dashboard</h1>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="display-5">Subjects</h1>
+        <hr>
+        <div class="row d-flex justify-content-center">
+            <ul class="list-group col-6" id="subjects"></ul>
+        </div>
+    </div>
 
 
   </body>

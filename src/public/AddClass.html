@@ -11,29 +11,36 @@
     <title>Add Class</title>
   </head>
   <body>
-    <h1>Add a class</h1>
+    <div class="jumbotron jumbotron-fluid bg-dark text-white">
+        <div class="container">
+            <h1 class="display-4">Add Class</h1>  
+        </div>
+    </div>
     <br>
     <div class="container">
-        <form id="addclass">
-        <div class="form-group">
-            <label for="">Start Time</label>
-            <input class="form-control" type="time" name="" id="startTime">
+        <div class="row d-flex justify-content-center">
+            <form id="addclass" class="col-6">
+                <div class="form-group">
+                    <label for="">Start Time</label>
+                    <input class="form-control" type="time" name="" id="startTime">
+                </div>
+                <div class="form-group">
+                    <label for="">End Time</label>
+                    <input class="form-control" type="time" name="" id="endTime">
+                </div>
+                <div class="form-group">
+                    <label for="">Select attendees</label>
+                    <select multiple class="form-control" id="students" >
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
+                </form>
         </div>
-        <div class="form-group">
-            <label for="">End Time</label>
-            <input class="form-control" type="time" name="" id="endTime">
-        </div>
-        <div class="form-group">
-            <label for="">Select attendees</label>
-            <select multiple class="form-control" id="students" >
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        
     </div>
     <form>
 
-
+    
 
   </body>
   <script>
