@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Add Class</title>
+  </head>
+  <body>
+    <h1>Add a class</h1>
+    <br>
+    <div class="container">
+        <form id="addclass">
+        <div class="form-group">
+            <label for="">Start Time</label>
+            <input class="form-control" type="time" name="" id="startTime">
+        </div>
+        <div class="form-group">
+            <label for="">End Time</label>
+            <input class="form-control" type="time" name="" id="endTime">
+        </div>
+        <div class="form-group">
+            <label for="">Select attendees</label>
+            <select multiple class="form-control" id="students" >
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <form>
+
+
+
+  </body>
+  <script>
+      window.addEventListener("load",() => {
+        const subjectName = decodeURIComponent(window.location.search.split("=")[1])
+          if(localStorage.getItem("attendance-category")=="0") {
+              location.href="dashboard.html"
+          }
+          fetch("/getStudents", {
+              headers:{
+                  auth:sessionStorage.getItem("attendance-auth")
+              }
+          })
+          .then(res =>res.json())
+          .then(data =>  {
+              if(data.students) {
+                output=""
+                data.students.forEach(student => {
+                    output+=`<option value="${student.studentID}">${student.name}</option>`
+                })
+                document.getElementById("students").innerHTML=output
+              }else {
+                  alert("Failed to fetch from database")
+              }
+          })
+          .catch(err => {
+              console.log(err)
+              alert("Failed to fetch, please login again")
+          })
+
+          document.getElementById("addclass").addEventListener("submit" , (e) => {
+          var startTime = document.getElementById("startTime").value
+          var endTime = document.getElementById("endTime").value
+          var students = document.getElementById("students").options
+          currentDate = new Date().getDate() + "-" + new Date().getMonth() + "-" + new Date().getUTCFullYear()
+          startTime = new Date(currentDate + " " + startTime)
+          endTime = new Date(currentDate + " " + endTime)
+          var atnds=[]
+          for(var i =0;i<students.length;i++) {
+              if(students[i].selected) {
+                atnds.push(students[i].value)
+              }
+          }
+          fetch("/markAttendance",{
+              method:"POST",
+              headers:{
+                'Content-Type': 'application/json',
+                auth:sessionStorage.getItem("attendance-auth")
+              },
+              body:JSON.stringify({
+                  subject: subjectName,
+                  attendees:atnds,
+                  startTime:startTime,
+                  endTime:endTime
+              })
+          })
+          .then(res=>res.json())
+          .then(data =>  {
+              if(data.message=="Success") {
+                  alert("Class added successfully")
+              }else {
+                  alert("Failed to add class, please try again!")
+              }
+          })
+          .catch(err => {
+              console.log(err)
+              alert("Failed to add class, please login to retry.")
+          })
+          e.preventDefault()
+      })
+      })
+   
+  </script>
+</html>

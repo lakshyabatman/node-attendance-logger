@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <h1>Dashboard</h1>
+    <br>
+    <ul class="list-group" id="subjects">
+        <li class="list-group-item">Cras justo odio</li>
+        
+      </ul>
+
+
+  </body>
+  <script>
+      window.addEventListener("load",() => {
+          fetch("/getSubjects",{
+              headers:{
+                  auth:sessionStorage.getItem("attendance-auth")
+              }
+          })
+          .then(req => req.json())
+          .then(data => {
+              if(data.Subjects) {
+                  output=""
+                  data.Subjects.forEach(subject => {
+                      output+=`<li class="list-group-item"><a href="Classes.html?subject=${subject.name}">${subject.name}</a></li>`
+                  });
+                  document.getElementById('subjects').innerHTML=output
+              }else {
+                alert("Failed to access database please login again!")
+              }
+          })
+          .catch(error => {
+              console.log(error)
+              alert("Failed to access database please login again!")
+          })
+      })
+  </script>
+</html>

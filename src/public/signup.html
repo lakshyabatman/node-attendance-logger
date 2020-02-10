@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+    <div class="container px-5" >
+        <form id="signup">
+            <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="name">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Example select</label>
+                <select class="form-control" id="category" name="category">
+                <option value="1">Teacher</option>
+                <option value="0">Student</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+    <script>
+      document.getElementById("signup").addEventListener("submit", e => {
+        let name = document.getElementById("email").value
+        let password = document.getElementById("password").value
+        let category = document.getElementById("category").value
+
+        fetch("/signup", {
+          method:"POST",
+          headers: {'Content-Type': 'application/json'},
+          body:JSON.stringify({
+            name:name,
+            password:password,
+            category:category
+          })
+        })
+        .then((res) => res.json())
+        .then((data)=> {
+          if(data.auth) {
+            sessionStorage.setItem("attendance-auth",data.auth)
+            sessionStorage.setItem("attendance-category",data.category)
+            location.href="/dashboard.html"
+          }else {
+            alert("Failed to signup")
+          }
+        })
+        e.preventDefault()
+      })
+    </script>
+  </body>
+</html>
