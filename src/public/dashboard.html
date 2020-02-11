@@ -16,6 +16,10 @@
     </style>
   </head>
   <body>
+    <nav class="navbar bg-primary text-white">
+        <span class="navbar-brand mb-0 h1">Attendance management </span>
+        <button class="btn text-white" id="logout">Logout</button>
+    </nav>  
     <div class="jumbotron jumbotron-fluid bg-dark text-white">
         <div class="container">
           <h1 class="display-4">Dashboard</h1>
@@ -31,29 +35,7 @@
 
 
   </body>
-  <script>
-      window.addEventListener("load",() => {
-          fetch("/getSubjects",{
-              headers:{
-                  auth:sessionStorage.getItem("attendance-auth")
-              }
-          })
-          .then(req => req.json())
-          .then(data => {
-              if(data.Subjects) {
-                  output=""
-                  data.Subjects.forEach(subject => {
-                      output+=`<li class="list-group-item"><a href="Classes.html?subject=${subject.name}">${subject.name}</a></li>`
-                  });
-                  document.getElementById('subjects').innerHTML=output
-              }else {
-                alert("Failed to access database please login again!")
-              }
-          })
-          .catch(error => {
-              console.log(error)
-              alert("Failed to access database please login again!")
-          })
-      })
-  </script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/logout.js"></script>
+
 </html>

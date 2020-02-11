@@ -30,19 +30,27 @@ const ValidateToken = async(req,res,next) => {
 }
 const signup = async (req,res) => {
     const psd = await hashpassword(req.body.password)
-    const person = await personModel.create({
-        name:req.body.name,
-        password:psd,
-        category:parseInt(req.body.category)
-    })
-    const payload = {
-        id:person._id
+    try {
+        const person = await personModel.create({
+            name:req.body.name,
+            password:psd,
+            category:parseInt(req.body.category)
+        })
+        const payload = {
+            id:person._id
+        }
+        const token = jwt.sign(payload,"test")
+        res.json({
+            auth:token,
+            category:person.category
+        })
+    }catch (e) {
+        console.log(e)
+        res.status(200).json({
+            message:"Failed"
+        })
     }
-    const token = jwt.sign(payload,"test")
-    res.json({
-        auth:token,
-        category:person.category
-    })
+   
 }
 
 const login = async (req,res) => {

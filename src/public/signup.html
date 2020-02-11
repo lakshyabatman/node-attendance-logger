@@ -11,6 +11,9 @@
     <title>Hello, world!</title>
   </head>
   <body>
+    <nav class="navbar bg-primary text-white">
+      <span class="navbar-brand mb-0 h1">Attendance management </span>
+    </nav>  
     <div class="jumbotron jumbotron-fluid bg-dark text-white">
       <div class="container">
         <h1 class="display-4">Attendance Manager</h1>
@@ -48,33 +51,7 @@
     </footer>
 
     
-    <script>
-      document.getElementById("signup").addEventListener("submit", e => {
-        let name = document.getElementById("email").value
-        let password = document.getElementById("password").value
-        let category = document.getElementById("category").value
-
-        fetch("/signup", {
-          method:"POST",
-          headers: {'Content-Type': 'application/json'},
-          body:JSON.stringify({
-            name:name,
-            password:password,
-            category:category
-          })
-        })
-        .then((res) => res.json())
-        .then((data)=> {
-          if(data.auth) {
-            sessionStorage.setItem("attendance-auth",data.auth)
-            sessionStorage.setItem("attendance-category",data.category)
-            location.href="/dashboard.html"
-          }else {
-            alert("Failed to signup")
-          }
-        })
-        e.preventDefault()
-      })
-    </script>
+    <script src="js/signup.js"></script>
+    <script src="js/logout.js"></script>
   </body>
 </html>

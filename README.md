@@ -2,7 +2,7 @@
 
 A simple Node.JS application for managing school or college attendance.
 This application is deployed on https://attendance-sys-logger.herokuapp.com/
-This application is a part of task 
+This application is a part of task by MyWays.
 The task #2 is on this link.
 
 The application has two main directories one is <code>src</code> and other is <code>public</code>, the src directory contains programs for API service whereas public directory which is a subdirectory of src contains static html and js files for client.
